@@ -116,12 +116,20 @@ export default function ManagerDashboard() {
               Manager view — <span className="text-emerald-400">{user?.name}</span>
             </p>
           </div>
-          <button
-            onClick={logout}
-            className="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-800 transition-all px-5 py-2.5 rounded-lg text-sm font-medium"
-          >
-            Logout
-          </button>
+          <div className="flex gap-3">
+            <a
+              href="/projects"
+              className="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-800 transition-all px-5 py-2.5 rounded-lg text-sm font-medium flex items-center"
+            >
+              Manage Projects
+            </a>
+            <button 
+              onClick={logout}
+              className="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-800 transition-all px-5 py-2.5 rounded-lg text-sm font-medium"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         {/* Summary Metrics */}
