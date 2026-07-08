@@ -5,7 +5,8 @@ from app.core.security import hash_password, verify_password, create_access_toke
 from app.models.user import User
 from ..schemas.user import UserCreate, UserLogin, UserOut, Token
 from app.core.deps import get_current_user
-
+from typing import List
+from app.core.deps import require_manager
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -39,3 +40,6 @@ def login(credentials: UserLogin, db: Session = Depends(get_db)):
 @router.get("/me", response_model=UserOut)
 def get_me(current_user: User = Depends(get_current_user)):
     return current_user
+@router.get("/users", response_model=List[UserOut])
+def list_users(db: Session = Depends(get_db), current_user: User = Depends(require_manager)):
+    return db.query(User).all()
